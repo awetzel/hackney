@@ -76,16 +76,11 @@ is_ipv6(Host) ->
         {ok, {_, _, _, _}} ->
             false;
         _ ->
-            case inet:getaddr(Host, inet) of
+            case inet:getaddr(Host, inet6) of
                 {ok, _} ->
-                    false;
+                    true;
                 _ ->
-                    case inet:getaddr(Host, inet6) of
-                        {ok, _} ->
-                            true;
-                        _ ->
-                            false
-                    end
+                    false
             end
     end.
 
